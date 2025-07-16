@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 
 ---
 
-<header class="page-header js-page-header">
+<header class="page-header">
     <div class="logo-wrapper">
         <Image src="/logo_synteco_white.svg" alt="logo" width={130} height={30} class="logo-primary" />
         <Image src="/logo_synteco_black.svg" alt="logo" width={130} height={30} class="logo-secondary" />
@@ -19,16 +19,10 @@ import { Image } from "astro:assets";
 </header>
 
 <script>
-
-    const headerElement = document.querySelector('.js-page-header') as HTMLElement;
     const contentElement = document.querySelector('.js-content') as HTMLElement;
 
-    const calculateLogoOffset = () => {
-        const contentElementPositionFromTop = contentElement.getBoundingClientRect().top;
-
-        if (contentElementPositionFromTop < 0 || contentElementPositionFromTop > headerElement.offsetHeight) {
-            return;
-        }
+    const calculateLogoOffset = (isInitial: boolean = false) => {
+        const { top: contentElementPositionFromTop } = contentElement.getBoundingClientRect();
         
         document.documentElement.style.setProperty('--logo-offset', `${contentElementPositionFromTop}px`);
     }
