@@ -21,7 +21,7 @@ import { Image } from "astro:assets";
 <script>
     const contentElement = document.querySelector('.js-content') as HTMLElement;
 
-    const calculateLogoOffset = (isInitial: boolean = false) => {
+    const calculateLogoOffset = () => {
         const { top: contentElementPositionFromTop } = contentElement.getBoundingClientRect();
         
         document.documentElement.style.setProperty('--logo-offset', `${contentElementPositionFromTop}px`);
