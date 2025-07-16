@@ -1,0 +1,43 @@
+---
+import { Image } from "astro:assets";
+
+---
+
+<header class="page-header js-page-header">
+    <div class="logo-wrapper">
+        <Image src="/logo_synteco_white.svg" alt="logo" width={130} height={30} class="logo-primary" />
+        <Image src="/logo_synteco_black.svg" alt="logo" width={130} height={30} class="logo-secondary" />
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<script>
+
+    const headerElement = document.querySelector('.js-page-header') as HTMLElement;
+    const contentElement = document.querySelector('.js-content') as HTMLElement;
+
+    const calculateLogoOffset = () => {
+        const contentElementPositionFromTop = contentElement.getBoundingClientRect().top;
+
+        if (contentElementPositionFromTop < 0 || contentElementPositionFromTop > headerElement.offsetHeight) {
+            return;
+        }
+        
+        document.documentElement.style.setProperty('--logo-offset', `${contentElementPositionFromTop}px`);
+    }
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        calculateLogoOffset();
+        
+        document.addEventListener('scroll', () => {
+            calculateLogoOffset();
+        });
+    });
+</script>

@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --logo-offset: 0;
+}
+
+.banner { 
+    background-color: #000;
+    width: 100vw;
+    height: 100dvh;
+}
+
+.content {
+    height: 3000px;
+}
+
+.page-header {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 0;
+    width: 100vw;
+    padding: 1rem;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.page-header nav ul {
+    display: flex;
+    gap: 1rem;
+}
+
+.page-header nav ul li {
+    list-style: none;
+}
+
+.page-header nav ul li a {
+    text-decoration: none;
+    color: green;
+}
+
+.page-header .logo-wrapper {
+    position: relative;
+    width: 130px;
+    height: 30px;
+    overflow: hidden;
+}
+
+.page-header .logo-primary, .page-header .logo-secondary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.page-header .logo-primary {
+    z-index: 1;
+}
+
+.page-header .logo-secondary {
+    z-index: 2;
+    will-change: clip-path;
+    clip-path: inset(calc(var(--logo-offset) - 1rem) 0 0 0);
+}
